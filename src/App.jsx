@@ -15,11 +15,11 @@ function App() {
   const [editingId, setEditingId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const isFormEmpty = !title.trim() && !body.trim();
-  const normalizedSearchTerm = searchTerm.trim().toLowerCase();
+  const normalizedSearchTerm = searchTerm.toLowerCase().trim();
   const filteredEntries = entries.filter((entry) => {
     if (!normalizedSearchTerm) return true;
-    const titleText = entry.title.toLowerCase();
-    const bodyText = entry.body.toLowerCase();
+    const titleText = String(entry.title ?? "").toLowerCase();
+    const bodyText = String(entry.body ?? "").toLowerCase();
     return (
       titleText.includes(normalizedSearchTerm) ||
       bodyText.includes(normalizedSearchTerm)
